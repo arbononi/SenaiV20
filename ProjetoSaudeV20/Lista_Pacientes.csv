@@ -1,0 +1,5 @@
+num_cpf;nome_completo;endereco;numero;complemento;bairro;cep;cidade;uf;data_nasc;telefone
+12345678901;André Rogério Bononi;Rua Carlos Gomes;1974;;Centro;14160530;Sertãozinho;SP;03121969;16-99193-3081;
+12345678902;Elenice de Oliveira Martins Bononi;Rua Carlos Gomes;1974;;Centro;14160530;Sertãozinho;SP;19021969;16-99382-3115;
+12345678903;Carla Martins Bononi;Rua Carlos Gomes;1974;;Centro;14160530;Sertãozinho;SP;30031995;;
+12345678904;André Rogério Bononi Júnior;Rua Carlos Gomes;1974;;Centro;14160530;Sertãozinho;SP;31082001;;

@@ -1,0 +1,5 @@
+id;data_exame;num_cpf;temperatura;tipo_temperatura;pressao_arterial;tipo_pressao_arterial;frequencia_cardiaca;tipo_frequencia_cardiaca;tipo_atendimento
+1;170420251730;12345678901;37.5;1;14.9;2;95;1;0
+2;170420251800;12345678902;39.5;2;14.9;2;115;2;2
+3;170420251830;12345678903;37.5;1;13.8;1;85;1;1
+4;170420251900;12345678904;34.5;0;9;0;55;0;3

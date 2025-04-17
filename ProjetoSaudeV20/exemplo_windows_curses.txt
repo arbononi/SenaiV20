@@ -1,0 +1,96 @@
+import curses
+from datetime import datetime
+
+def validar_cpf(cpf):
+    return cpf.isdigit() and len(cpf) == 11
+
+def validar_data(data):
+    try:
+        datetime.strptime(data, "%d/%m/%Y")
+        return True
+    except ValueError:
+        return False
+
+def validar_nome(nome):
+    return len(nome.strip()) >= 3
+
+def formulario(stdscr):
+    curses.curs_set(1)
+    stdscr.clear()
+
+    dados = {
+        "cpf": "12345678900",
+        "nome": "João da Silva",
+        "data_nasc": "01/01/1990"
+    }
+
+    while True:
+        stdscr.clear()
+        stdscr.addstr(1, 2, "CPF: ")
+        stdscr.addstr(2, 2, "Nome: ")
+        stdscr.addstr(3, 2, "Data de Nascimento: ")
+
+        stdscr.addstr(1, 8, dados["cpf"])
+        stdscr.addstr(2, 8, dados["nome"])
+        stdscr.addstr(3, 24, dados["data_nasc"])
+
+        # CPF
+        while True:
+            stdscr.move(1, 8)
+            stdscr.clrtoeol()
+            cpf = stdscr.getstr(1, 8, 14).decode('utf-8').strip()
+            if cpf == "":
+                break
+            elif validar_cpf(cpf):
+                dados["cpf"] = cpf
+                break
+            else:
+                stdscr.addstr(5, 2, "CPF inválido. Deve conter 11 dígitos.")
+                stdscr.refresh()
+                curses.napms(1500)
+                stdscr.addstr(5, 2, " " * 40)
+
+        # Nome
+        while True:
+            stdscr.move(2, 8)
+            stdscr.clrtoeol()
+            nome = stdscr.getstr(2, 8, 30).decode('utf-8').strip()
+            if nome == "":
+                break
+            elif validar_nome(nome):
+                dados["nome"] = nome
+                break
+            else:
+                stdscr.addstr(5, 2, "Nome inválido. Mínimo 3 caracteres.")
+                stdscr.refresh()
+                curses.napms(1500)
+                stdscr.addstr(5, 2, " " * 40)
+
+        # Data de nascimento
+        while True:
+            stdscr.move(3, 24)
+            stdscr.clrtoeol()
+            data = stdscr.getstr(3, 24, 10).decode('utf-8').strip()
+            if data == "":
+                break
+            elif validar_data(data):
+                dados["data_nasc"] = data
+                break
+            else:
+                stdscr.addstr(5, 2, "Data inválida. Use dd/mm/aaaa.")
+                stdscr.refresh()
+                curses.napms(1500)
+                stdscr.addstr(5, 2, " " * 40)
+
+        # Mostrar dados atualizados
+        stdscr.clear()
+        stdscr.addstr(5, 2, "Dados atualizados:")
+        stdscr.addstr(6, 4, f"CPF: {dados['cpf']}")
+        stdscr.addstr(7, 4, f"Nome: {dados['nome']}")
+        stdscr.addstr(8, 4, f"Data de Nascimento: {dados['data_nasc']}")
+        stdscr.addstr(10, 2, "Pressione qualquer tecla para sair.")
+        stdscr.refresh()
+        stdscr.getch()
+        break
+
+curses.wrapper(formulario)
